@@ -1,0 +1,27 @@
+
+<% @notes.each do |note| %>
+	<div class="note">
+		<div class="tag">
+			<%= note.category.name || '' %>
+		</div>
+		
+		<%= link_to note do %>
+		<h2><%= note.title %></h2>
+		<% end %>
+		
+		<div class="content">
+			<td><%= note.content %></td>
+		</div>
+		
+		<% if session[:user_id] %>
+		<div class="actions">
+			<%= link_to 'More...', note %> | 
+			<%= link_to 'Edit', edit_note_path(note) %> | 
+			<%= link_to 'x', note, method: :delete, data: { confirm: 'Are you sure?' } %>
+		</div>
+		<% end %>
+	</div>
+<% end %>
+
+
+<%= link_to 'Add Note', new_note_path %>

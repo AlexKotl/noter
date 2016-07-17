@@ -1,0 +1,20 @@
+<h1>Login</h1>
+
+<% if flash[:alert] %>
+	<b><%= flash[:alert] %></b>
+<% end %>
+
+<%= form_tag do %>
+<fieldset>
+	<div>
+		<%= label_tag :email, 'Login' %>
+		<%= text_field_tag :email, params[:email] %>
+	</div>
+	<div>
+		<%= label_tag :password, 'Password' %>
+		<%= password_field_tag :password, params[:password] %>
+	</div>
+	
+	<%= submit_tag "Login" %>
+</fieldset>
+<% end %>

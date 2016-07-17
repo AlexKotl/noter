@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if session[:user_id] %>
+  	Welcome, my King <br>
+  	<%= button_to "Logout", logout_path, method: :delete %>
+  <% else %>
+  	<%= link_to "Login", login_path %>
+  <% end %>
+  
+  <title>Noter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body class="<%= controller.controller_name %>">
+
+<div class="headBlock">
+	<a href="/">
+		<h1>Noter</h1>	
+	</a>
+	
+	<%= link_to 'All-for', notes_path %>
+	<% Category.all.each do |cat| %>
+		- <%= link_to cat.name, notes_path(category: cat.name) %>
+	<% end %>
+</div>
+
+<div class="mainContainer">
+	<%= yield %>
+</div>
+
+</body>
+</html>
